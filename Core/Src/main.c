@@ -28,10 +28,15 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
+
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
+#define PACKET_SIZE 256
+#define FILL_VALUE 85
 
 /* USER CODE END PD */
 
@@ -45,6 +50,7 @@
 PCD_HandleTypeDef hpcd_USB_OTG_HS;
 
 /* USER CODE BEGIN PV */
+uint8_t buffer[PACKET_SIZE];
 
 /* USER CODE END PV */
 
@@ -54,11 +60,15 @@ static void MX_GPIO_Init(void);
 static void MX_ICACHE_Init(void);
 static void MX_USB_OTG_HS_PCD_Init(void);
 /* USER CODE BEGIN PFP */
-
+void Fill_Buffer(void) {
+    memset(buffer, FILL_VALUE, PACKET_SIZE);
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+
 
 /* USER CODE END 0 */
 
@@ -70,6 +80,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+
+	Fill_Buffer();
 
   /* USER CODE END 1 */
 
@@ -92,7 +104,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_ICACHE_Init();
-  //MX_USB_OTG_HS_PCD_Init();
+  MX_USB_OTG_HS_PCD_Init();
   /* USER CODE BEGIN 2 */
   MX_USB_DEVICE_Init();
   /* USER CODE END 2 */
@@ -105,8 +117,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  CDC_Transmit_HS(msg, sizeof(msg) - 1);
-	  		HAL_Delay(1000);
+	  //CDC_Transmit_HS(msg, sizeof(msg) - 1);
+	  CDC_Transmit_HS(buffer, PACKET_SIZE);
+	  //		HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
