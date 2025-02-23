@@ -106,7 +106,6 @@ int main(void)
   MX_ICACHE_Init();
  80002a2:	f000 f86f 	bl	8000384 <MX_ICACHE_Init>
   //MX_USB_OTG_HS_PCD_Init();
-
   /* USER CODE BEGIN 2 */
   MX_USB_DEVICE_Init();
  80002a6:	f007 fd6d 	bl	8007d84 <MX_USB_DEVICE_Init>

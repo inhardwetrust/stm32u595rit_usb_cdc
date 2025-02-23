@@ -93,7 +93,6 @@ int main(void)
   MX_GPIO_Init();
   MX_ICACHE_Init();
   //MX_USB_OTG_HS_PCD_Init();
-
   /* USER CODE BEGIN 2 */
   MX_USB_DEVICE_Init();
   /* USER CODE END 2 */
@@ -213,7 +212,7 @@ static void MX_USB_OTG_HS_PCD_Init(void)
   /* USER CODE END USB_OTG_HS_Init 1 */
   hpcd_USB_OTG_HS.Instance = USB_OTG_HS;
   hpcd_USB_OTG_HS.Init.dev_endpoints = 9;
-  hpcd_USB_OTG_HS.Init.speed = PCD_SPEED_FULL;
+  hpcd_USB_OTG_HS.Init.speed = PCD_SPEED_HIGH;
   hpcd_USB_OTG_HS.Init.phy_itface = USB_OTG_HS_EMBEDDED_PHY;
   hpcd_USB_OTG_HS.Init.Sof_enable = DISABLE;
   hpcd_USB_OTG_HS.Init.low_power_enable = DISABLE;
